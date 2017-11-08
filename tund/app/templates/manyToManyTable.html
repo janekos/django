@@ -1,1 +1,41 @@
-<h1>töötab</h1>
+<h1>manytomany omanikud</h1>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>omaniku nr</th>
+        <th>omaniku nimi</th>
+        <th>omatud raamatu nr</th>
+    </tr>
+    
+    {% for item in omanikud %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.omaniku_nr}}</td>
+        <td>{{item.omanik_nimi}}</td>
+        <td>{{item.omatud_raamatu_nr}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h1>manytomany raamatud</h1>
+<table border="1">
+    <tr>
+        <th>raamatu nr</th>
+        <th>raamatud nimi</th>
+        <th>raamatud lehti</th>
+        <th>omanikud</th>
+    </tr>
+    
+    {% for item in raamatud %}
+    <tr>
+        <td>{{item.raamatu_nr}}</td>
+        <td>{{item.raamatu_nimi}}</td>
+        <td>{{item.raamatu_lehti}}</td>
+        
+        <td>
+        {% for item in item.omanikud.all %}
+            <p style="margin:0;padding: 0;">{{item.omanik_nimi}}</p>
+        {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
