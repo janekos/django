@@ -28,4 +28,21 @@ def save_raamatud(data_string):
             for item in models.omanikud.objects.all():
                 if(int(item.omatud_raamatu_nr) == int(attribute[0])):
                     model.omanikud.add(item)
+
+def save_omanikud(data_string):
+    data = data_string.splitlines()
+    dataLen = len(data)
+    
+    kasKirjeteArvudSamad = (models.raamatud.objects.all().count() >= (dataLen-1))
+    
+    if(not kasKirjeteArvudSamad):
+        for i in range(1, dataLen):
+            attribute = data[i].split(',')
+            model = models.omanikud()
+            model.id = attribute[0]
+            model.omaniku_nr = attribute[1]
+            model.omanik_nimi = attribute[2]
+            model.omatud_raamatu_nr = attribute[3]
+            
+            model.save()
             
