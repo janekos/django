@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^calories/$', views.calories_view, name='calories')
+    url(r'^manytomany$', views.manyToManyTable, name='manyToManyTable')
 ]
