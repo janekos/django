@@ -1,5 +1,5 @@
-# django
-Tunni jooksul valminu django kood
+## django
+# Veebiraamistike tunni jooksul valminud django kood
 
 Slaidide link: bit.ly/2hTaNMf
 
