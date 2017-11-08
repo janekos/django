@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block calories %}
+<form method="post">
+    {% csrf_token %}
+    {{ calories_formset.management_form }}
+    {% for form in calories_formset %}
+    <div class="link-formset">
+        {{ form.food_item }}
+        {{ form.calories }}
+    </div>
+    {% endfor %}
+    <br><br>
+    <input type="submit" name="submit_items" value="Sisesta" />
+</form>
+<br>
+<table class="table">
+    <thead>
+    <tr>
+        <td>Toit</td>
+        <td>Kalorid (100g)</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ calories_formset.management_form }}
+        <tr>
+            <td>{{item.food_item}}</td>
+            <td>{{item.calories}}</td>
+            <td><button type="submit" name="delete_items" value="{{ item.pk }}">x</button></td>
+        </tr>
+        </form>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
