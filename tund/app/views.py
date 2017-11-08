@@ -16,7 +16,7 @@ def manyToManyTable(request):
     
     return render(
         request,
-        'app/manyToManyTable.html',
+        'manyToManyTable.html',
         {
             'title':'manytomany',
             'omanikud': omanikud,
