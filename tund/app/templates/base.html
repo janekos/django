@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>django</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+        select {
+            height: 30px;
+            width: 168px;
+        }
+        input {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    {% block nav %}
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+        </div>
+      </div>
+    </nav>
+    {% endblock %}
+    <div class="container">
+    </div>
+    {% block scripts %}{% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script>
+    $('.link-formset').formset({
+        addText: 'Lisa rida',
+        deleteText: 'Eemalda rida'
+    });
+
+    {% url 'diary' as diary_url %}
+    {% if request.get_full_path == diary_url %}
+        var ctx = document.getElementById('chart');
+        var data = {{chart_data | safe}};
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: data,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              xAxes: [{ stacked: true }],
+              yAxes: [{ stacked: true }]
+            }
+          }
+        });
+    {% endif %}
+</script>
+</body>
+</html>
